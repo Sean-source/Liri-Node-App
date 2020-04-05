@@ -1,3 +1,4 @@
+const fs = require("fs");
 const moment = require("moment");
 require("dotenv").config();
 const keys = require("./keys.js");
@@ -22,7 +23,7 @@ const concert = function (artist) {
 // concert("Backstreet Boys");
 
 const spotifySong = function (song) {
-    if (song == "") {
+    if (song == "" || song == null || song == undefined) {
         song = "The Sign";
     }
     spotify.search({ type: 'track', query: song }, function (err, data) {
@@ -42,4 +43,33 @@ const spotifySong = function (song) {
         }
     })
 }
-spotifySong("I want it that way");
+spotifySong();
+
+const file = function () {
+    fs.readFile('random.txt', (err, data) => {
+        if (err) throw err;
+        console.log(data);
+        let split = data.split(",");
+        logic(split[0], split[1]);
+    });
+
+}
+
+const logic = function (command1, command2) {
+
+    if (command1 == "concert-this") {
+        concert(command2);
+    }
+    else if (command1 == "spotify-this") {
+        spotify(command2);
+    }
+    else if (command1 == ) {
+
+    }
+    else {
+
+    }
+
+}
+
+logic(process.argv[2], process.argv[3]);
