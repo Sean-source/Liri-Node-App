@@ -81,8 +81,8 @@ const logic = function (command1, command2) {
     if (command1 == "concert-this") { //if the first item in the cmd input equals the concert-this command
         concert(command2);
     }
-    else if (command1 == "spotify-this") {//if the first item in the cmd input equals the spotify-this then call the spotify function
-        spotify(command2);
+    else if (command1 == "spotify-this-song") {//if the first item in the cmd input equals the spotify-this then call the spotify function
+        spotifySong(command2);
     }
     else if (command1 == "movie-this") {
         movie(command2);
@@ -93,4 +93,5 @@ const logic = function (command1, command2) {
 
 }
 
-logic(process.argv[2], process.argv[3].slice(3));
+
+logic(process.argv[2], process.argv[3]);
