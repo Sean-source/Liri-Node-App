@@ -67,7 +67,7 @@ const movie = function (movieName) {
 //movie("Mr. Nobody")
 
 const file = function () { //Creating function to read file
-    fs.readFile('random.txt', (err, data) => { //Callback function
+    fs.readFile("random.txt", (err, data) => { //Callback function
         if (err) throw err; //Checks if there is an error
         console.log(data); //
         let split = data.split(","); //Turns the string into an array
@@ -86,6 +86,9 @@ const logic = function (command1, command2) {
     }
     else if (command1 == "movie-this") {
         movie(command2);
+    }
+    else if (command1 == "do-what-it-says") {
+        file();
     }
     else {
         console.log("Invalid Input");
