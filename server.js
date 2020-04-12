@@ -9,6 +9,9 @@ const spotify = new Spotify(keys.spotify); //Initializes a spotify object with t
 const axios = require("axios"); //Makes http request from node.js
 
 const concert = function (artist) { //Creating a concert function to search based off of artist
+    if (artist == "" || artist == null || artist == undefined) {
+        artist = "Backstreet Boys"; //Sets the song to default son
+    }
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")//Makes http request to the respective url
         .then(function (response) { //Asynchronous callback
             let data = response.data; //Grabbing api data
@@ -47,6 +50,9 @@ const spotifySong = function (song) {
 }
 // spotifySong();
 const movie = function (movieName) {
+    if (movieName == "" || movieName == null || movieName == undefined) {
+        movieName = "Mr. Nobobdy"; //Sets the movie to default
+    }
     axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy")
         .then(function (response) {
             let data = response.data;
@@ -67,9 +73,9 @@ const movie = function (movieName) {
 //movie("Mr. Nobody")
 
 const file = function () { //Creating function to read file
-    fs.readFile("random.txt", (err, data) => { //Callback function
+    fs.readFile("random.txt", "UTF-8", (err, data) => { //Returns buffer if character set is not declared and Callback function
         if (err) throw err; //Checks if there is an error
-        console.log(data); //
+        console.log(data);
         let split = data.split(","); //Turns the string into an array
         logic(split[0], split[1]); //Calling the logic function
     });
